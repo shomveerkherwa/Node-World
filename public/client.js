@@ -59,4 +59,6 @@ function scrollToBottom() {
 // receive message
 socket.on('message', (msg) => {
     console.log(msg);
+    appendMessage(msg, 'incoming')
+    scrollToBottom()
 })
