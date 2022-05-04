@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>ChatSocial App</title>
+  </head>
+  <body>
+    <div class="chat-container">
+      <header class="chat-header">
+        <h1><i class="fa-solid fa-cow"></i> Chat Social</h1>
+        <a id="leave-btn" class="btn">Leave Room</a>
+      </header>
+      <main class="chat-main">
+        <div class="chat-sidebar">
+          <h3><i class="fas fa-comments"></i> Room Name:</h3>
+          <h2 id="room-name"></h2>
+          <h3><i class="fas fa-users"></i> Users</h3>
+          <ul id="users"></ul>
+        </div>
+        <div class="chat-messages"></div>
+      </main>
+      <div class="chat-form-container">
+        <form id="chat-form">
+          <input
+            class="form-control"
+            id="msg"
+            type="text"
+            placeholder="Enter Message"
+            required
+            autocomplete="off"
+          />
+          <button onclick="toggle()">Click me</button>
+          <div class="tooltip" role="tooltip">
+            <emoji-picker></emoji-picker>
+          </div>
+          <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+      integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+      crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script type="module" src="https://unpkg.com/emoji-picker-element@1"></script>
+    <script>
+      const button = document.querySelector('button')
+      const tooltip = document.querySelector('.tooltip')
+      Popper.createPopper(button, tooltip)
+      function toggle() {
+        tooltip.classList.toggle('shown')
+      }
+    </script>
+  </body>
+</html>

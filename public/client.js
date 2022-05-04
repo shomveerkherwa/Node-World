@@ -1,6 +1,6 @@
 const socket = io()
 
-let naam;
+let userName;
 
 // get the element
 let textarea = document.querySelector('#textarea')
@@ -9,8 +9,8 @@ let messageArea = document.querySelector('.message__area')
 
 // force user to enter a name, or keep promting until there is an input.
 do{
-    naam = prompt('Please Enter your name');
-} while(!naam)
+    userName = prompt('Please Enter your name');
+} while(!userName)
 
 // trigger this event when a key is pressed
 textarea.addEventListener('keyup', (e)=> {
@@ -24,7 +24,7 @@ textarea.addEventListener('keyup', (e)=> {
 function sendMessage(typedMessage) {
     // format the message by adding username and message body
     let msg = {
-        user: naam,
+        user: userName,
         message:typedMessage.trim()
     }
 
