@@ -26,21 +26,21 @@
         <div class="chat-messages"></div>
       </main>
       <div class="chat-form-container">
-        <form id="chat-form">
-          <input
-            class="form-control"
+        <!-- <form id="chat-form"> -->
+          <i onclick="toggle()" class="fas fa-smile"></i>
+          <div class="tooltip" role="tooltip">
+            <emoji-picker></emoji-picker>
+          </div>
+          <textarea
+          rows="4",
+          cols="50"
             id="msg"
             type="text"
             placeholder="Enter Message"
             required
-            autocomplete="off"
-          />
-          <button onclick="toggle()">Click me</button>
-          <div class="tooltip" role="tooltip">
-            <emoji-picker></emoji-picker>
-          </div>
-          <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
-        </form>
+            autocomplete="off" style="width:70%"></textarea>
+          <button id="send-btn" class="btn"><i class="fas fa-paper-plane"></i> Send</button>
+        <!-- </form> -->
       </div>
     </div>
 
@@ -48,9 +48,11 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
       integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
       crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/main.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script type="module" src="https://unpkg.com/emoji-picker-element@1"></script>
     <script>
       const button = document.querySelector('button')
@@ -59,6 +61,14 @@
       function toggle() {
         tooltip.classList.toggle('shown')
       }
+
+      document.querySelector('emoji-picker').addEventListener('emoji-click', e => {
+      var curPos = document.getElementById("msg").selectionStart;
+                console.log(curPos);
+                let x = $("#msg").val();
+                let text_to_insert = e.detail.unicode;
+                $("#msg").val(x.slice(0, curPos) + text_to_insert + x.slice(curPos));
+      })
     </script>
   </body>
 </html>

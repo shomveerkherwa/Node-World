@@ -1,8 +1,9 @@
-const chatForm = document.getElementById('chat-form');
+//const chatForm = document.getElementById('chat-form');
 const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
-const leaveButon = document.getElementById('leave-btn');
+const leaveButton = document.getElementById('leave-btn');
+const sendButton = document.getElementById('send-btn');
 const socket = io()
 
 document.querySelector('emoji-picker')
@@ -39,20 +40,20 @@ function outputMessage(message){
   document.querySelector('.chat-messages').appendChild(div);
 }
 
-// Message submit
-chatForm.addEventListener('submit', (e) => {
-    e.preventDefault();
 
+sendButton.addEventListener('click', (e) => {
+    //e.preventDefault();
+    console.log("my actions with text area");
     //getting the value for the element with id msg
-    const msg = e.target.elements.msg.value;
+    const msg = document.getElementById('msg').value;
 
     //emitting the chat messgae to server
     socket.emit('chatMessage', msg);
 
     // clear the input field and focus on it.
-    e.target.elements.msg.value = '';
-    e.target.elements.msg.focus();
-})
+    document.getElementById('msg').value = '';
+    document.getElementById('msg').focus();
+});
 
 // what to do when you receive a message of this type
 socket.on('roomUsers', ({room, users}) => {
@@ -73,10 +74,12 @@ function outputUsers(users) {
 }
 
 // what happens when a user clicks leave room
-leaveButon.addEventListener('click', () => {
+leaveButton.addEventListener('click', () => {
     const leaveRoom = confirm('Are you sure you want to leave the room?');
     if(leaveRoom){
         window.location = '../index.html';
     }
 });
+
+
 

@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
         socket.join(user.room);
 
         //welcome the current user
-        socket.emit('message', formatMessage(appName, 'Welcome to chatcord'));
+        socket.emit('message', formatMessage(appName, 'Welcome to chat-socials'));
     
         // broadcasts when a client connects
         socket.broadcast
@@ -49,9 +49,6 @@ io.on('connection', (socket) => {
             users: getRoomUsers(user.room)
         });
     })
-
-    
-    
 
     
     //listen to emited message
